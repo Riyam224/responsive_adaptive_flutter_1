@@ -1,4 +1,6 @@
 // ignore_for_file: prefer_const_constructors
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 
 class AdaptiveLayout extends StatelessWidget {
@@ -8,7 +10,7 @@ class AdaptiveLayout extends StatelessWidget {
       required this.tabletLayout,
       required this.desktopLayout});
   // todo
-  final Widget mobileLayout, tabletLayout, desktopLayout;
+  final WidgetBuilder mobileLayout, tabletLayout, desktopLayout;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -16,11 +18,11 @@ class AdaptiveLayout extends StatelessWidget {
       //   print("media query width =  ${MediaQuery.sizeOf(context).width}");
       // print("LayoutBuilder is ${constraints.maxWidth}");
       if (constraints.maxWidth < 600) {
-        return mobileLayout;
+        return mobileLayout(context);
       } else if (constraints.maxWidth < 900) {
-        return tabletLayout;
+        return tabletLayout(context);
       } else {
-        return desktopLayout;
+        return desktopLayout(context);
       }
     });
   }

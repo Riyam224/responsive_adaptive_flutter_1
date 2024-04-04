@@ -21,9 +21,9 @@ class HomeViewBody extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16),
         // todo
         child: AdaptiveLayout(
-          mobileLayout: MobileLayout(),
-          tabletLayout: TabletLayout(),
-          desktopLayout: DesktopLayout(),
+          mobileLayout: (context) => MobileLayout(),
+          tabletLayout: (context) => TabletLayout(),
+          desktopLayout: (context) => DesktopLayout(),
         ));
   }
 }
