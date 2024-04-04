@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project1/views/widgets/Desktop_layout.dart';
+import 'package:project1/views/widgets/adaptive_layout.dart';
 import 'package:project1/views/widgets/custom_list.dart';
 import 'package:project1/views/widgets/custom_list_view.dart';
 import 'package:project1/views/widgets/custom_sliver_grid.dart';
@@ -17,20 +18,12 @@ class HomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      // todo
-      child: LayoutBuilder(builder: (context, constraints) {
-        // todo layoutbuilder depends on parent height and  media query depends on screen height
-        //   print("media query width =  ${MediaQuery.sizeOf(context).width}");
-        // print("LayoutBuilder is ${constraints.maxWidth}");
-        if (constraints.maxWidth < 600) {
-          return MobileLayout();
-        } else if (constraints.maxWidth < 900) {
-          return TabletLayout();
-        } else {
-          return DesktopLayout();
-        }
-      }),
-    );
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        // todo
+        child: AdaptiveLayout(
+          mobileLayout: MobileLayout(),
+          tabletLayout: TabletLayout(),
+          desktopLayout: DesktopLayout(),
+        ));
   }
 }
